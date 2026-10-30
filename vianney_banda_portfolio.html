@@ -1,0 +1,1804 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#171318">
+  <meta name="description"
+    content="Portfolio de Vianney BANDA — étudiant en Architecture logicielle, passionné par le développement, la cybersécurité, l'intelligence artificielle et la robotique.">
+  <title>Vianney BANDA — Architecture logicielle · IA · Cybersecurity</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500;0,600;1,500&display=swap');
+
+    :root {
+      --bg: #171318;
+      --bg2: #211a21;
+      --panel: #241e24;
+      --panel2: #2b222b;
+      --plum: #754b62;
+      --plum2: #a16d87;
+      --gold: #c9a66b;
+      --gold2: #e2c894;
+      --cream: #f7f1eb;
+      --muted: #b9abb4;
+      --line: rgba(226, 200, 148, .17);
+      --max: 1160px;
+      --radius: 22px;
+      --ease: cubic-bezier(.2, .75, .25, 1);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 90px
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--cream);
+      font-family: Manrope, system-ui, sans-serif;
+      line-height: 1.7;
+      overflow-x: hidden
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      background:
+        radial-gradient(ellipse at 85% 8%, rgba(117, 75, 98, .18), transparent 35%),
+        radial-gradient(ellipse at 8% 70%, rgba(201, 166, 107, .07), transparent 32%)
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none
+    }
+
+    button {
+      font: inherit
+    }
+
+    .container {
+      width: min(var(--max), calc(100% - 48px));
+      margin: auto
+    }
+
+    .mono,
+    .eyebrow,
+    .tag,
+    .nav-link,
+    .section-index {
+      font-family: "DM Mono", monospace
+    }
+
+    .eyebrow {
+      color: var(--gold);
+      font-size: .76rem;
+      letter-spacing: .16em;
+      text-transform: uppercase
+    }
+
+    .gold {
+      color: var(--gold)
+    }
+
+    .muted {
+      color: var(--muted)
+    }
+
+    .section {
+      padding: 112px 0;
+      position: relative
+    }
+
+    .section-heading {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 30px;
+      margin-bottom: 48px
+    }
+
+    .section-heading h2 {
+      font-size: clamp(2.1rem, 5vw, 3.5rem);
+      line-height: 1.08;
+      letter-spacing: -.055em;
+      margin-top: 13px
+    }
+
+    .section-heading p {
+      max-width: 390px;
+      color: var(--muted);
+      font-size: .94rem
+    }
+
+    .line {
+      height: 1px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      opacity: .5
+    }
+
+    /* Navigation */
+    .topbar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      background: rgba(23, 19, 24, .78);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(255, 255, 255, .06)
+    }
+
+    .nav {
+      height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      letter-spacing: .04em
+    }
+
+    .brand-mark {
+      width: 39px;
+      height: 39px;
+      border: 1px solid var(--gold);
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: var(--gold);
+      font-family: "Playfair Display", serif;
+      font-size: 1.05rem;
+      position: relative
+    }
+
+    .brand-mark::after {
+      content: "";
+      position: absolute;
+      inset: 5px;
+      border: 1px solid rgba(201, 166, 107, .3);
+      border-radius: 50%
+    }
+
+    .brand small {
+      display: block;
+      font: .58rem "DM Mono", monospace;
+      color: var(--muted);
+      letter-spacing: .17em;
+      margin-top: -3px
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 29px
+    }
+
+    .nav-link {
+      font-size: .72rem;
+      color: var(--muted);
+      transition: .25s
+    }
+
+    .nav-link:hover {
+      color: var(--gold)
+    }
+
+    .nav-cta {
+      border: 1px solid var(--gold);
+      padding: 10px 16px;
+      border-radius: 99px;
+      color: var(--gold);
+      font: .72rem "DM Mono", monospace;
+      transition: .3s
+    }
+
+    .nav-cta:hover {
+      background: var(--gold);
+      color: var(--bg)
+    }
+
+    .menu-btn {
+      display: none;
+      background: none;
+      border: 1px solid var(--line);
+      color: var(--cream);
+      border-radius: 10px;
+      padding: 8px 11px
+    }
+
+        /* Bouton de langue */
+    .language-toggle {
+      background: none;
+      border: 1px solid var(--line);
+      color: var(--cream);
+      font: 500 .72rem "DM Mono", monospace;
+      letter-spacing: .08em;
+      padding: 9px 13px;
+      border-radius: 99px;
+      cursor: pointer;
+      transition: .3s;
+    }
+
+    .language-toggle:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 100svh;
+      display: flex;
+      align-items: center;
+      padding: 145px 0 85px;
+      position: relative;
+      overflow: hidden
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      align-items: center;
+      gap: 65px
+    }
+
+    .hero-kicker {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 25px
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      background: #8fc49d;
+      border-radius: 50%;
+      box-shadow: 0 0 0 5px rgba(143, 196, 157, .1);
+      animation: pulse 2s infinite
+    }
+
+    .hero h1 {
+      font-size: clamp(3.5rem, 8vw, 7.2rem);
+      letter-spacing: -.085em;
+      line-height: .96;
+      font-weight: 800
+    }
+
+    .hero h1 span {
+      display: block;
+      color: var(--gold);
+      font-family: "Playfair Display", serif;
+      font-style: italic;
+      font-weight: 500;
+      letter-spacing: -.06em
+    }
+
+    .hero-subtitle {
+      font-size: clamp(1rem, 2vw, 1.22rem);
+      color: #d3c6ce;
+      margin: 27px 0 14px;
+      max-width: 610px
+    }
+
+    .typing-line {
+      color: var(--gold);
+      font: .83rem "DM Mono", monospace;
+      min-height: 25px
+    }
+
+    .typing-line::after {
+      content: "";
+      display: inline-block;
+      height: 14px;
+      width: 1px;
+      background: var(--gold);
+      margin-left: 5px;
+      vertical-align: -2px;
+      animation: blink .8s steps(2) infinite
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 13px;
+      margin-top: 34px
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      padding: 14px 20px;
+      border-radius: 99px;
+      font-size: .82rem;
+      font-weight: 700;
+      transition: transform .3s var(--ease), background .3s, border .3s
+    }
+
+    .btn:hover {
+      transform: translateY(-4px)
+    }
+
+    .btn-primary {
+      background: var(--gold);
+      color: #211a18
+    }
+
+    .btn-primary:hover {
+      background: var(--gold2)
+    }
+
+    .btn-ghost {
+      border: 1px solid rgba(247, 241, 235, .2);
+      color: var(--cream)
+    }
+
+    .btn-ghost:hover {
+      border-color: var(--gold);
+      color: var(--gold)
+    }
+
+    .hero-meta {
+      display: flex;
+      gap: 25px;
+      margin-top: 48px;
+      flex-wrap: wrap
+    }
+
+    .meta-item {
+      border-left: 1px solid var(--gold);
+      padding-left: 13px
+    }
+
+    .meta-item strong {
+      display: block;
+      font-size: .9rem
+    }
+
+    .meta-item span {
+      font: .65rem "DM Mono", monospace;
+      color: var(--muted);
+      letter-spacing: .06em
+    }
+
+    .hero-art {
+      min-height: 490px;
+      display: grid;
+      place-items: center;
+      position: relative
+    }
+
+    .orbit {
+      position: absolute;
+      border: 1px solid rgba(201, 166, 107, .22);
+      border-radius: 50%;
+      animation: spin 35s linear infinite
+    }
+
+    .orbit.one {
+      width: 420px;
+      height: 420px
+    }
+
+    .orbit.two {
+      width: 330px;
+      height: 330px;
+      animation-direction: reverse;
+      animation-duration: 28s;
+      border-style: dashed;
+      opacity: .7
+    }
+
+    .orbit::before {
+      content: "";
+      position: absolute;
+      width: 7px;
+      height: 7px;
+      background: var(--gold);
+      border-radius: 50%;
+      top: 50%;
+      left: -4px;
+      box-shadow: 0 0 18px var(--gold)
+    }
+
+    .crest {
+      width: 250px;
+      height: 300px;
+      position: relative;
+      display: grid;
+      place-items: center;
+      filter: drop-shadow(0 20px 55px rgba(0, 0, 0, .4))
+    }
+
+    .crest svg {
+      width: 100%;
+      height: 100%;
+      overflow: visible
+    }
+
+    .crest-caption {
+      position: absolute;
+      bottom: 15px;
+      text-align: center;
+      font: .65rem "DM Mono", monospace;
+      letter-spacing: .24em;
+      color: var(--gold)
+    }
+
+    .floating-note {
+      position: absolute;
+      padding: 12px 15px;
+      background: rgba(43, 34, 43, .86);
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      backdrop-filter: blur(12px);
+      font: .7rem "DM Mono", monospace;
+      color: var(--muted);
+      box-shadow: 0 12px 35px #0003
+    }
+
+    .floating-note b {
+      color: var(--cream);
+      display: block;
+      font: 700 .8rem Manrope, sans-serif;
+      margin-top: 3px
+    }
+
+    .note-a {
+      top: 50px;
+      right: 0
+    }
+
+    .note-b {
+      bottom: 54px;
+      left: -12px
+    }
+
+    .scroll-cue {
+      position: absolute;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      font: .62rem "DM Mono", monospace;
+      letter-spacing: .2em;
+      color: var(--muted);
+      display: flex;
+      gap: 10px;
+      align-items: center
+    }
+
+    .scroll-cue::before {
+      content: "";
+      height: 1px;
+      width: 35px;
+      background: var(--gold)
+    }
+
+    /* About */
+    .about-grid {
+      display: grid;
+      grid-template-columns: .75fr 1.25fr;
+      gap: 70px;
+      align-items: start
+    }
+
+    .about-card {
+      padding: 30px;
+      background: linear-gradient(145deg, #302330, #211b22);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      position: sticky;
+      top: 110px
+    }
+
+    .monogram {
+      height: 180px;
+      border-radius: 16px;
+      background: radial-gradient(circle at 50% 45%, #76536a, #302330 65%);
+      display: grid;
+      place-items: center;
+      margin-bottom: 25px;
+      overflow: hidden;
+      position: relative
+    }
+
+    .monogram span {
+      font: italic 5.2rem "Playfair Display", serif;
+      color: var(--gold);
+      text-shadow: 0 8px 30px #0008
+    }
+
+    .about-card .identity {
+      font-size: 1.2rem;
+      font-weight: 800
+    }
+
+    .about-card .role {
+      font-size: .83rem;
+      color: var(--muted);
+      margin: 5px 0 20px
+    }
+
+    .mini-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 11px 0;
+      border-top: 1px solid rgba(255, 255, 255, .07);
+      font-size: .75rem
+    }
+
+    .mini-row span:first-child {
+      color: var(--muted)
+    }
+
+    .about-copy h3 {
+      font-size: 1.65rem;
+      line-height: 1.3;
+      letter-spacing: -.04em;
+      margin-bottom: 18px
+    }
+
+    .about-copy p {
+      color: var(--muted);
+      margin-bottom: 16px
+    }
+
+    .quote {
+      margin: 28px 0;
+      padding: 22px 25px;
+      border-left: 2px solid var(--gold);
+      background: rgba(201, 166, 107, .06);
+      font: italic 1.2rem "Playfair Display", serif;
+      color: #ead8c0
+    }
+
+    .principles {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 28px
+    }
+
+    .principle {
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 14px
+    }
+
+    .principle strong {
+      display: block;
+      color: var(--gold);
+      font-size: .83rem;
+      margin-bottom: 5px
+    }
+
+    .principle span {
+      font-size: .72rem;
+      color: var(--muted)
+    }
+
+    /* Focus cards */
+    .focus-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px
+    }
+
+    .focus-card {
+      background: linear-gradient(150deg, #2b222b, #201a20);
+      border: 1px solid rgba(255, 255, 255, .07);
+      border-radius: 18px;
+      padding: 27px;
+      min-height: 230px;
+      transition: .35s var(--ease);
+      position: relative;
+      overflow: hidden
+    }
+
+    .focus-card::after {
+      content: "";
+      position: absolute;
+      width: 130px;
+      height: 130px;
+      border: 1px solid rgba(201, 166, 107, .12);
+      border-radius: 50%;
+      right: -65px;
+      bottom: -65px;
+      transition: .4s
+    }
+
+    .focus-card:hover {
+      transform: translateY(-7px);
+      border-color: rgba(201, 166, 107, .45);
+      background: linear-gradient(150deg, #382837, #211a21)
+    }
+
+    .focus-card:hover::after {
+      transform: scale(1.5)
+    }
+
+    .focus-icon {
+      width: 43px;
+      height: 43px;
+      border: 1px solid var(--line);
+      border-radius: 13px;
+      display: grid;
+      place-items: center;
+      color: var(--gold);
+      font-size: 1.1rem;
+      margin-bottom: 23px
+    }
+
+    .focus-card h3 {
+      font-size: 1.08rem;
+      margin-bottom: 9px
+    }
+
+    .focus-card p {
+      font-size: .81rem;
+      color: var(--muted)
+    }
+
+    /* Journey */
+    .journey {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 55px
+    }
+
+    .timeline {
+      border-left: 1px solid rgba(201, 166, 107, .35);
+      margin: 25px 0 0 8px;
+      padding-left: 28px
+    }
+
+    .timeline-item {
+      position: relative;
+      padding: 0 0 30px
+    }
+
+    .timeline-item::before {
+      content: "";
+      position: absolute;
+      width: 9px;
+      height: 9px;
+      background: var(--gold);
+      border-radius: 50%;
+      left: -33px;
+      top: 8px;
+      box-shadow: 0 0 0 5px rgba(201, 166, 107, .1)
+    }
+
+    .timeline-date {
+      font: .68rem "DM Mono", monospace;
+      color: var(--gold);
+      letter-spacing: .08em
+    }
+
+    .timeline-item h3 {
+      font-size: 1rem;
+      margin: 6px 0
+    }
+
+    .timeline-item p {
+      font-size: .81rem;
+      color: var(--muted)
+    }
+
+    .skill-panel {
+      padding: 28px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius)
+    }
+
+    .skill-panel h3 {
+      font-size: 1.1rem;
+      margin-bottom: 20px
+    }
+
+    .skill {
+      margin: 18px 0
+    }
+
+    .skill-head {
+      display: flex;
+      justify-content: space-between;
+      font-size: .78rem;
+      margin-bottom: 8px
+    }
+
+    .skill-head span:last-child {
+      color: var(--muted);
+      font: .65rem "DM Mono", monospace
+    }
+
+    .skill-track {
+      height: 5px;
+      background: #423540;
+      border-radius: 20px;
+      overflow: hidden
+    }
+
+    .skill-fill {
+      height: 100%;
+      width: 0;
+      background: linear-gradient(90deg, var(--plum2), var(--gold));
+      border-radius: 20px;
+      transition: width 1.4s var(--ease)
+    }
+
+    .skill-note {
+      font-size: .72rem;
+      color: var(--muted);
+      margin-top: 20px
+    }
+
+    /* Projects */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px
+    }
+
+    .project {
+      border: 1px solid rgba(255, 255, 255, .08);
+      border-radius: 20px;
+      overflow: hidden;
+      background: #211b22;
+      transition: .35s
+    }
+
+    .project:hover {
+      transform: translateY(-6px);
+      border-color: rgba(201, 166, 107, .4)
+    }
+
+    .project-visual {
+      height: 190px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(135deg, #39283a, #1c1a22)
+    }
+
+    .project-visual::before,
+    .project-visual::after {
+      content: "";
+      position: absolute;
+      border: 1px solid rgba(201, 166, 107, .25);
+      border-radius: 50%;
+      width: 220px;
+      height: 220px
+    }
+
+    .project-visual::after {
+      width: 150px;
+      height: 150px
+    }
+
+    .project-symbol {
+      font: italic 2.4rem "Playfair Display", serif;
+      color: var(--gold);
+      z-index: 1;
+      letter-spacing: .04em
+    }
+
+    .project-visual small {
+      position: absolute;
+      bottom: 14px;
+      right: 18px;
+      font: .6rem "DM Mono", monospace;
+      color: #c8b5c2;
+      letter-spacing: .13em
+    }
+
+    .project-body {
+      padding: 24px
+    }
+
+    .project-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      margin-bottom: 11px
+    }
+
+    .project h3 {
+      font-size: 1.17rem
+    }
+
+    .project-status {
+      font: .59rem "DM Mono", monospace;
+      color: var(--gold);
+      border: 1px solid var(--line);
+      padding: 5px 8px;
+      border-radius: 99px;
+      white-space: nowrap
+    }
+
+    .project p {
+      font-size: .81rem;
+      color: var(--muted);
+      margin-bottom: 17px
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px
+    }
+
+    .tag {
+      font-size: .62rem;
+      color: #d6c5cf;
+      background: #382d38;
+      border: 1px solid rgba(255, 255, 255, .05);
+      padding: 5px 9px;
+      border-radius: 99px
+    }
+
+    /* Ambitions */
+    .vision {
+      background: linear-gradient(135deg, #2d222d, #1e1920);
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      padding: clamp(28px, 5vw, 58px);
+      position: relative;
+      overflow: hidden
+    }
+
+    .vision::after {
+      content: "∞";
+      position: absolute;
+      right: 4%;
+      top: -70px;
+      font: 18rem "Playfair Display", serif;
+      color: rgba(201, 166, 107, .055);
+      pointer-events: none
+    }
+
+    .vision h3 {
+      font: 500 clamp(1.8rem, 4vw, 3.1rem)/1.2 "Playfair Display", serif;
+      max-width: 750px;
+      margin: 16px 0
+    }
+
+    .vision p {
+      color: var(--muted);
+      max-width: 700px;
+      font-size: .9rem
+    }
+
+    .vision-pills {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 26px
+    }
+
+    .vision-pills span {
+      border: 1px solid var(--line);
+      border-radius: 99px;
+      padding: 8px 13px;
+      color: #e3d5dd;
+      font: .68rem "DM Mono", monospace
+    }
+
+    /* Contact */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr .8fr;
+      gap: 50px;
+      align-items: start
+    }
+
+    .contact-title {
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      line-height: 1;
+      letter-spacing: -.07em;
+      margin: 15px 0 22px
+    }
+
+    .contact-title em {
+      font: italic 500 1em "Playfair Display", serif;
+      color: var(--gold)
+    }
+
+    .contact-links {
+      display: grid;
+      gap: 11px
+    }
+
+    .contact-link {
+      padding: 17px 19px;
+      border: 1px solid rgba(255, 255, 255, .09);
+      border-radius: 14px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: .25s
+    }
+
+    .contact-link:hover {
+      border-color: var(--gold);
+      transform: translateX(5px)
+    }
+
+    .contact-link span:first-child {
+      font-size: .84rem
+    }
+
+    .contact-link small {
+      display: block;
+      color: var(--muted);
+      font: .62rem "DM Mono", monospace;
+      margin-top: 3px
+    }
+
+    .contact-link b {
+      color: var(--gold);
+      font-size: 1.1rem
+    }
+
+    .contact-disclaimer {
+      font-size: .72rem;
+      color: var(--muted);
+      margin-top: 17px
+    }
+
+    footer {
+      padding: 28px 0;
+      border-top: 1px solid rgba(255, 255, 255, .07)
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      align-items: center;
+      color: var(--muted);
+      font: .67rem "DM Mono", monospace
+    }
+
+    .backtop {
+      color: var(--gold)
+    }
+
+    /* Motion */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity .8s var(--ease), transform .8s var(--ease)
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0)
+    }
+
+    .delay-1 {
+      transition-delay: .12s
+    }
+
+    .delay-2 {
+      transition-delay: .24s
+    }
+
+    .delay-3 {
+      transition-delay: .36s
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg)
+      }
+    }
+
+    @keyframes pulse {
+      50% {
+        box-shadow: 0 0 0 9px rgba(143, 196, 157, 0)
+      }
+    }
+
+    @keyframes blink {
+      50% {
+        opacity: 0
+      }
+    }
+
+    @keyframes float {
+      50% {
+        transform: translateY(-12px)
+      }
+    }
+
+    .crest {
+      animation: float 6s ease-in-out infinite
+    }
+
+    @media(max-width:900px) {
+      .hero-grid {
+        grid-template-columns: 1fr .8fr;
+        gap: 25px
+      }
+
+      .orbit.one {
+        width: 330px;
+        height: 330px
+      }
+
+      .orbit.two {
+        width: 265px;
+        height: 265px
+      }
+
+      .hero-art {
+        min-height: 400px
+      }
+
+      .crest {
+        width: 205px;
+        height: 250px
+      }
+
+      .about-grid {
+        gap: 35px
+      }
+
+      .focus-grid {
+        grid-template-columns: repeat(2, 1fr)
+      }
+    }
+
+    @media(max-width:700px) {
+      .container {
+        width: min(100% - 34px, var(--max))
+      }
+
+      .section {
+        padding: 82px 0
+      }
+
+      .nav {
+        height: 68px
+      }
+
+      .menu-btn {
+        display: block
+      }
+
+      .nav-links {
+        display: none;
+        position: absolute;
+        top: 68px;
+        left: 0;
+        right: 0;
+        background: #211a21;
+        padding: 22px 25px 26px;
+        border-bottom: 1px solid var(--line);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px
+      }
+
+      .nav-links.open {
+        display: flex
+      }
+
+      .nav-cta {
+        display: inline-block
+      }
+
+      .hero {
+        padding: 120px 0 75px
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr
+      }
+
+      .hero-art {
+        min-height: 340px;
+        grid-row: 1
+      }
+
+      .hero-copy {
+        grid-row: 2
+      }
+
+      .hero h1 {
+        font-size: clamp(3.5rem, 16vw, 5.5rem)
+      }
+
+      .orbit.one {
+        width: 290px;
+        height: 290px
+      }
+
+      .orbit.two {
+        width: 230px;
+        height: 230px
+      }
+
+      .note-a {
+        right: 2%;
+        top: 20px
+      }
+
+      .note-b {
+        left: 2%;
+        bottom: 15px
+      }
+
+      .scroll-cue {
+        display: none
+      }
+
+      .section-heading {
+        display: block
+      }
+
+      .section-heading p {
+        margin-top: 17px
+      }
+
+      .about-grid,
+      .journey,
+      .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 30px
+      }
+
+      .about-card {
+        position: relative;
+        top: auto
+      }
+
+      .principles {
+        grid-template-columns: 1fr
+      }
+
+      .focus-grid,
+      .projects-grid {
+        grid-template-columns: 1fr
+      }
+
+      .focus-card {
+        min-height: 190px
+      }
+
+      .project-visual {
+        height: 165px
+      }
+
+      .footer-inner {
+        flex-direction: column;
+        align-items: flex-start
+      }
+    }
+
+    @media(prefers-reduced-motion:reduce) {
+
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important
+      }
+
+      .reveal {
+        opacity: 1;
+        transform: none
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <nav class="nav container" aria-label="Navigation principale">
+      <a class="brand" href="#accueil" aria-label="Vianney BANDA, accueil">
+        <span class="brand-mark">VB</span><span>Vianney BANDA<small>PERSONAL PORTFOLIO</small></span>
+      </a>
+      <button class="menu-btn" id="menuBtn" aria-label="Ouvrir le menu" aria-expanded="false">☰</button>
+      <div class="nav-links" id="navLinks">
+        <a class="nav-link" href="#profil">PROFIL</a>
+        <a class="nav-link" href="#expertises">EXPERTISES</a>
+        <a class="nav-link" href="#parcours">PARCOURS</a>
+        <a class="nav-link" href="#projets">PROJETS</a>
+        <a class="nav-cta" href="#contact">ÉCHANGEONS ↗</a>
+        <button id="languageToggle" class="language-toggle">EN</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="accueil">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="hero-kicker eyebrow"><span class="status-dot"></span> Étudiant · Créateur · Bâtisseur</div>
+          <h1>Vianney <span>BANDA.</span></h1>
+          <p class="hero-subtitle">Je construis aujourd'hui les compétences qui façonneront les systèmes numériques de
+            demain.</p>
+          <div class="typing-line" id="typingText">Architecture logicielle</div>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#projets">Découvrir mes projets <span>↗</span></a>
+            <a class="btn btn-ghost" href="#profil">Explorer mon univers <span>↓</span></a>
+          </div>
+          <div class="hero-meta">
+            <div class="meta-item"><strong>Cotonou, Bénin</strong><span>ANCRAGE · AMBITION INTERNATIONALE</span></div>
+            <div class="meta-item"><strong>ESGIS</strong><span>ARCHITECTURE LOGICIELLE</span></div>
+          </div>
+        </div>
+        <div class="hero-art" aria-label="Emblème graphique personnel">
+          <div class="orbit one"></div>
+          <div class="orbit two"></div>
+          <div class="crest">
+            <svg viewBox="0 0 250 300" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path
+                d="M125 18 C105 52 75 65 55 102 C39 132 54 166 82 181 C62 151 75 125 96 111 C88 146 102 169 125 190 C148 169 162 146 154 111 C175 125 188 151 168 181 C196 166 211 132 195 102 C175 65 145 52 125 18Z"
+                stroke="#C9A66B" stroke-width="2.2" />
+              <path d="M125 70 C108 99 103 124 125 157 C147 124 142 99 125 70Z" fill="url(#g)" fill-opacity=".28"
+                stroke="#E2C894" stroke-width="1.5" />
+              <path
+                d="M125 157 C103 178 93 203 101 229 C109 252 125 270 125 270 C125 270 141 252 149 229 C157 203 147 178 125 157Z"
+                stroke="#C9A66B" stroke-width="2" />
+              <path d="M84 203 C58 194 44 178 38 157 M166 203 C192 194 206 178 212 157" stroke="#A16D87"
+                stroke-width="2" />
+              <path d="M64 226 C82 235 100 238 125 238 C150 238 168 235 186 226" stroke="#C9A66B" stroke-width="1.5" />
+              <defs>
+                <linearGradient id="g" x1="90" y1="70" x2="160" y2="180">
+                  <stop stop-color="#E2C894" />
+                  <stop offset="1" stop-color="#754B62" />
+                </linearGradient>
+              </defs>
+            </svg>
+            <div class="crest-caption">CALME · PUISSANCE · IMPACT</div>
+          </div>
+          <div class="floating-note note-a">CURRENT FOCUS<b>Software architecture</b></div>
+          <div class="floating-note note-b">MINDSET<b>Learn. Build. Impact.</b></div>
+        </div>
+      </div>
+      <div class="scroll-cue">SCROLL TO EXPLORE</div>
+    </section>
+
+    <section class="section" id="profil">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div>
+            <div class="eyebrow">01 / À PROPOS</div>
+            <h2>Un esprit curieux.<br><span class="gold">Une vision ambitieuse.</span></h2>
+          </div>
+          <p>La technologie comme terrain d'apprentissage, de création et d'impact concret.</p>
+        </div>
+        <div class="about-grid">
+          <aside class="about-card reveal">
+            <div class="monogram"><span>VB</span></div>
+            <div class="identity">Vianney BANDA</div>
+            <div class="role">Étudiant en Architecture logicielle · ESGIS Cotonou</div>
+            <div class="mini-row"><span>Localisation</span><strong>Bénin</strong></div>
+            <div class="mini-row"><span>Formation</span><strong>Licence · Informatique</strong></div>
+            <div class="mini-row"><span>Orientation</span><strong>Tech & innovation</strong></div>
+            <div class="mini-row"><span>Langues</span><strong>Français · Anglais en progression</strong></div>
+          </aside>
+          <div class="about-copy reveal delay-1">
+            <h3>Je suis un étudiant en informatique animé par une idée simple : <span class="gold">comprendre en
+                profondeur pour créer avec intention.</span></h3>
+            <p>Actuellement en troisième année de formation en Informatique et Réseaux, option Architecture logicielle, à
+              l'ESGIS Cotonou, je développe progressivement un profil qui relie conception logicielle, développement
+              web, réseaux et sécurité informatique.</p>
+            <p>J'aime apprendre en construisant : expérimenter sous Linux, mettre en place des environnements de
+              virtualisation, concevoir des applications, comprendre les mécanismes qui se cachent derrière les systèmes
+              et transformer une idée en solution utilisable.</p>
+            <p>Mon intérêt ne s'arrête pas au code. Je m'intéresse aussi à l'entrepreneuriat numérique, à l'innovation,
+              à la robotique et à la manière dont la technologie peut répondre aux réalités des entreprises et des
+              communautés africaines.</p>
+            <div class="quote">« Calme dans l’esprit, puissant dans l’action et éternel dans l’impact. »</div>
+            <div class="principles">
+              <div class="principle"><strong>Curiosité</strong><span>Questionner, explorer et apprendre
+                  continuellement.</span></div>
+              <div class="principle"><strong>Discipline</strong><span>Progresser avec méthode, même sur les sujets
+                  difficiles.</span></div>
+              <div class="principle"><strong>Impact</strong><span>Créer des solutions utiles, pas seulement
+                  impressionnantes.</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="expertises">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div>
+            <div class="eyebrow">02 / CENTRES D'INTÉRÊT</div>
+            <h2>Les domaines qui<br><span class="gold">me font avancer.</span></h2>
+          </div>
+          <p>Des domaines complémentaires que j'explore et que je souhaite approfondir au fil de ma formation et de mes
+            réalisations.</p>
+        </div>
+        <div class="focus-grid">
+          <article class="focus-card reveal">
+            <div class="focus-icon">⌘</div>
+            <h3>Architecture logicielle</h3>
+            <p>Conception d'applications structurées, réflexion sur les composants, les échanges entre services, la
+              maintenabilité et la qualité logicielle.</p>
+          </article>
+          <article class="focus-card reveal delay-1">
+            <div class="focus-icon">⌁</div>
+            <h3>Cybersécurité</h3>
+            <p>Réseaux, systèmes, sécurité des applications, hachage des mots de passe, bonnes pratiques et découverte
+              progressive des environnements de test.</p>
+          </article>
+          <article class="focus-card reveal delay-2">
+            <div class="focus-icon">✳</div>
+            <h3>Intelligence artificielle</h3>
+            <p>Un intérêt grandissant pour les systèmes intelligents, l'exploitation des données et les possibilités de
+              l'IA dans les produits numériques.</p>
+          </article>
+          <article class="focus-card reveal">
+            <div class="focus-icon">⌨</div>
+            <h3>Développement web</h3>
+            <p>Création d'interfaces et d'applications avec HTML, CSS, JavaScript, PHP, MySQL, Laravel et React selon
+              les besoins des projets.</p>
+          </article>
+          <article class="focus-card reveal delay-1">
+            <div class="focus-icon">◈</div>
+            <h3>Réseaux & systèmes</h3>
+            <p>Linux, administration, virtualisation, services réseau, DNS, bases de données distribuées et
+              compréhension des infrastructures.</p>
+          </article>
+          <article class="focus-card reveal delay-2">
+            <div class="focus-icon">⚙</div>
+            <h3>Robotique & innovation</h3>
+            <p>Une curiosité pour l'interaction entre logiciel et matériel, les systèmes embarqués, Arduino et les
+              technologies qui prennent vie.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="parcours">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div>
+            <div class="eyebrow">03 / PARCOURS & APPRENTISSAGE</div>
+            <h2>Construire des bases.<br><span class="gold">Élargir l'horizon.</span></h2>
+          </div>
+          <p>Un parcours en construction, avec une priorité : consolider les fondamentaux et les transformer en
+            compétences pratiques.</p>
+        </div>
+        <div class="journey">
+          <div>
+            <div class="eyebrow">FORMATION</div>
+            <div class="timeline">
+              <div class="timeline-item">
+                <div class="timeline-date">2026 — EN COURS</div>
+                <h3>ESGIS Cotonou · Informatique et Réseaux</h3>
+                <p>Troisième année, option Architecture logicielle. Approfondissement des bases en programmation, bases
+                  de données, réseaux, systèmes et conception d'applications.</p>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-date">2024</div>
+                <h3>Baccalauréat · CEG 1 de Kouandé</h3>
+                <p>Obtention du baccalauréat, série C.</p>
+              </div>
+              <div class="timeline-item">
+                <div class="timeline-date">2021</div>
+                <h3>BEPC · Collège Catholique Père Jean-Louis Bréhier</h3>
+                <p>Études secondaires à Kouandé.</p>
+              </div>
+            </div>
+            <div class="eyebrow" style="margin-top:12px">APPRENTISSAGE AUTONOME</div>
+            <p class="muted" style="font-size:.82rem;margin-top:12px">Exploration poussée de Linux (Ubuntu, Kali,
+              CentOS), des réseaux et de la sécurité, de la programmation, des bases de données, de Laravel, React,
+              Python et des outils de développement.</p>
+          </div>
+          <div class="skill-panel reveal">
+            <h3>Technologies & environnements explorés</h3>
+            <div class="skill">
+              <div class="skill-head"><span>HTML · CSS · JavaScript · React</span><span>WEB</span></div>
+              <div class="skill-track">
+                <div class="skill-fill" data-width="70%"></div>
+              </div>
+            </div>
+            <div class="skill">
+              <div class="skill-head"><span>PHP · MySQL · Laravel</span><span>BACK-END</span></div>
+              <div class="skill-track">
+                <div class="skill-fill" data-width="68%"></div>
+              </div>
+            </div>
+            <div class="skill">
+              <div class="skill-head"><span>Python</span><span>PROGRAMMATION</span></div>
+              <div class="skill-track">
+                <div class="skill-fill" data-width="66%"></div>
+              </div>
+            </div>
+            <div class="skill">
+              <div class="skill-head"><span>Linux · Bash · VirtualBox</span><span>SYSTÈMES</span></div>
+              <div class="skill-track">
+                <div class="skill-fill" data-width="70%"></div>
+              </div>
+            </div>
+            <div class="skill">
+              <div class="skill-head"><span>Réseaux · DNS · SQL</span><span>INFRASTRUCTURE</span></div>
+              <div class="skill-track">
+                <div class="skill-fill" data-width="64%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="projets">
+      <div class="container">
+        <div class="section-heading reveal">
+          <div>
+            <div class="eyebrow">04 / LABORATOIRE DE CRÉATION</div>
+            <h2>Des idées qui prennent<br><span class="gold">forme.</span></h2>
+          </div>
+          <p>Projets personnels, concepts et expérimentations qui reflètent mes intérêts. Certains sont des pistes de
+            développement en cours de maturation.</p>
+        </div>
+        <div class="projects-grid">
+          <article class="project reveal">
+            <div class="project-visual">
+              <div class="project-symbol">NET//STATE</div><small>STRATEGY · CYBER · GAME</small>
+            </div>
+            <div class="project-body">
+              <div class="project-top">
+                <h3>NET//STATE</h3><span class="project-status">CONCEPT</span>
+              </div>
+              <p>Concept de jeu stratégique futuriste autour des réseaux, de la cybersécurité, de l'influence numérique
+                et de la prise de décision dans un monde connecté.</p>
+              <div class="tags"><span class="tag">Game design</span><span class="tag">Cybersecurity</span><span
+                  class="tag">Strategy</span></div>
+            </div>
+          </article>
+          <article class="project reveal delay-1">
+            <div class="project-visual">
+              <div class="project-symbol">L'ÉCHO</div><small>BENIN · CULTURE · STORYTELLING</small>
+            </div>
+            <div class="project-body">
+              <div class="project-top">
+                <h3>L'Écho des Ancêtres</h3><span class="project-status">CONCEPT</span>
+              </div>
+              <p>Projet de jeu narratif inspiré de l'histoire et du patrimoine du Bénin. Le joueur suit une quête autour
+                de fragments de mémoire, de lieux historiques et de récits ancestraux.</p>
+              <div class="tags"><span class="tag">Culture béninoise</span><span class="tag">Narration</span><span
+                  class="tag">Game design</span></div>
+            </div>
+          </article>
+          <article class="project reveal">
+            <div class="project-visual">
+              <div class="project-symbol">Mémora</div><small>WEB APP · EVENTS</small>
+            </div>
+            <div class="project-body">
+              <div class="project-top">
+                <h3>Memora</h3><span class="project-status">EXPLORATION</span>
+              </div>
+              <p>Idée de solution web pour enrichir les événements et les souvenirs partagés : QR code public, messages,
+                contenus multimédias et expérience numérique autour d'un événement.</p>
+              <div class="tags"><span class="tag">React</span><span class="tag">Laravel</span><span
+                  class="tag">MySQL</span><span class="tag">QR code</span></div>
+            </div>
+          </article>
+          <article class="project reveal delay-1">
+            <div class="project-visual">
+              <div class="project-symbol">VxOverflow</div><small>PERSONAL BRAND · WEB</small>
+            </div>
+            <div class="project-body">
+              <div class="project-top">
+                <h3>Portfolio & identité numérique</h3><span class="project-status">EN ÉVOLUTION</span>
+              </div>
+              <p>Construction d'une présence numérique professionnelle mettant en avant les compétences, les
+                expérimentations et une identité visuelle personnelle sobre et affirmée.</p>
+              <div class="tags"><span class="tag">HTML / CSS / JS</span><span class="tag">PHP</span><span
+                  class="tag">GitHub</span></div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="container">
+        <div class="vision reveal">
+          <div class="eyebrow">05 / CAP SUR L'AVENIR</div>
+          <h3>Penser global. Apprendre sans frontières. <span class="gold">Créer un impact durable.</span></h3>
+          <p>Mon ambition est de devenir un ingénieur en informatique capable de concevoir des systèmes robustes, de
+            comprendre les enjeux de cybersécurité et d'explorer les applications de l'intelligence artificielle et de
+            la robotique. À long terme, je souhaite entreprendre, contribuer à l'écosystème numérique béninois et
+            participer à des projets qui comptent.</p>
+          <p style="margin-top:13px">Je m'intéresse notamment aux opportunités de spécialisation et de poursuite
+            d'études à l'international, dans des environnements d'excellence scientifique et technologique.</p>
+          <div class="vision-pills"><span>CYBERSÉCURITÉ</span><span>IA &
+              DATA</span><span>ROBOTIQUE</span><span>ENTREPRENEURIAT</span><span>INNOVATION AU
+              BÉNIN</span><span>RECHERCHE & FORMATION</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="container contact-grid">
+        <div class="reveal">
+          <div class="eyebrow">06 / CONTACT</div>
+          <h2 class="contact-title">Une idée ?<br><em>Construisons.</em></h2>
+          <p class="muted" style="max-width:430px">Ouvert aux échanges autour du développement logiciel, de la
+            technologie, de l'apprentissage, des projets étudiants et des opportunités de collaboration.</p>
+          <a class="btn btn-primary" href="mailto:vianneybanda299@gmail.com" style="margin-top:28px">Me contacter par
+            e-mail ↗</a>
+        </div>
+        <div class="contact-links reveal delay-1">
+          <!-- Remplace les liens ci-dessous par tes URL publiques réelles avant publication. -->
+          <a class="contact-link" href="https://github.com/Vianney596" target="_blank"
+            rel="noopener noreferrer"><span>GitHub<small>CODE · PROJETS · EXPÉRIMENTATIONS</small></span><b>↗</b></a>
+          <a class="contact-link" href="https://www.linkedin.com/" target="_blank"
+            rel="noopener noreferrer"><span>LinkedIn<small>PARCOURS · RÉSEAU PROFESSIONNEL</small></span><b>↗</b></a>
+          <a class="contact-link" href="mailto:vianneybanda299@gmail.com"><span>E-mail<small>ÉCHANGEONS SUR UN
+                PROJET</small></span><b>↗</b></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> VIANNEY BANDA · BUILT WITH INTENTION.</span>
+      <span>CALME DANS L'ESPRIT. PUISSANT DANS L'ACTION.</span>
+      <a class="backtop" href="#accueil">RETOUR EN HAUT ↑</a>
+    </div>
+  </footer>
+
+  <script>
+    // Navigation mobile
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
+    menuBtn.addEventListener('click', () => {
+      const isOpen = navLinks.classList.toggle('open');
+      menuBtn.setAttribute('aria-expanded', String(isOpen));
+      menuBtn.textContent = isOpen ? '✕' : '☰';
+    });
+    document.querySelectorAll('.nav-links a').forEach(link => {
+      link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+        menuBtn.setAttribute('aria-expanded', 'false');
+        menuBtn.textContent = '☰';
+      });
+    });
+
+    // Apparition progressive des éléments au défilement
+    const revealObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {threshold: 0.13});
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // Animation des barres de compétences
+    const skillObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.querySelectorAll('.skill-fill').forEach(bar => {
+            bar.style.width = bar.dataset.width;
+          });
+          skillObserver.unobserve(entry.target);
+        }
+      });
+    }, {threshold: 0.3});
+    const skillPanel = document.querySelector('.skill-panel');
+    if (skillPanel) skillObserver.observe(skillPanel);
+
+    // Texte animé dans le hero
+    const phrases = [
+      'Architecture logicielle',
+      'Cybersécurité & réseaux',
+      'Développement web',
+      'Intelligence artificielle',
+      'Innovation & robotique'
+    ];
+    const typingText = document.getElementById('typingText');
+    let phraseIndex = 0, charIndex = 0, deleting = false;
+    function typeLoop() {
+      const current = phrases[phraseIndex];
+      typingText.textContent = current.slice(0, charIndex);
+      if (!deleting && charIndex < current.length) {
+        charIndex++;
+        setTimeout(typeLoop, 75);
+      } else if (!deleting) {
+        deleting = true;
+        setTimeout(typeLoop, 1450);
+      } else if (charIndex > 0) {
+        charIndex--;
+        setTimeout(typeLoop, 35);
+      } else {
+        deleting = false;
+        phraseIndex = (phraseIndex + 1) % phrases.length;
+        setTimeout(typeLoop, 300);
+      }
+    }
+    if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) typeLoop();
+    // Traduction FR / EN
+const translations = [
+  // Navigation
+  ['.nav-link', 0, 'PROFILE'],
+  ['.nav-link', 1, 'EXPERTISE'],
+  ['.nav-link', 2, 'JOURNEY'],
+  ['.nav-link', 3, 'PROJECTS'],
+  ['.nav-cta', 0, "LET'S TALK ↗"],
+
+  // Hero
+  ['.hero-kicker', 0, '<span class="status-dot"></span> Student · Creator · Builder'],
+  ['.hero-subtitle', 0, 'Today, I am building the skills that will shape tomorrow’s digital systems.'],
+  ['.hero-actions .btn-primary', 0, 'Discover my projects <span>↗</span>'],
+  ['.hero-actions .btn-ghost', 0, 'Explore my world <span>↓</span>'],
+  ['.meta-item strong', 0, 'Cotonou, Benin'],
+  ['.meta-item span', 0, 'ROOTED · INTERNATIONAL AMBITION'],
+  ['.meta-item span', 1, 'SOFTWARE ARCHITECTURE'],
+  ['.crest-caption', 0, 'CALM · POWER · IMPACT'],
+
+  // En-têtes de sections
+  ['.section-heading .eyebrow', 0, '01 / ABOUT'],
+  ['.section-heading h2', 0, 'A curious mind.<br><span class="gold">An ambitious vision.</span>'],
+  ['.section-heading p', 0, 'Technology as a ground for learning, creating and making a real impact.'],
+  ['.section-heading .eyebrow', 1, '02 / AREAS OF INTEREST'],
+  ['.section-heading h2', 1, 'The fields that<br><span class="gold">drive me forward.</span>'],
+  ['.section-heading p', 1, 'Complementary fields that I explore and want to deepen throughout my studies and projects.'],
+  ['.section-heading .eyebrow', 2, '03 / JOURNEY & LEARNING'],
+  ['.section-heading h2', 2, 'Building foundations.<br><span class="gold">Broadening horizons.</span>'],
+  ['.section-heading p', 2, 'A journey in progress, with one priority: consolidating the fundamentals and turning them into practical skills.'],
+  ['.section-heading .eyebrow', 3, '04 / CREATION LAB'],
+  ['.section-heading h2', 3, 'Ideas taking<br><span class="gold">shape.</span>'],
+  ['.section-heading p', 3, 'Personal projects, concepts and experiments that reflect my interests. Some are development ideas still maturing.'],
+
+  // À propos
+  ['.about-card .role', 0, 'Software Architecture student · ESGIS Cotonou'],
+  ['.mini-row', 0, '<span>Location</span><strong>Benin</strong>'],
+  ['.mini-row', 1, '<span>Studies</span><strong>Bachelor · Computer Science</strong>'],
+  ['.mini-row', 2, '<span>Focus</span><strong>Tech & innovation</strong>'],
+  ['.mini-row', 3, '<span>Languages</span><strong>French · English (improving)</strong>'],
+  ['.about-copy h3', 0, 'I am a computer science student driven by a simple idea: <span class="gold">understand deeply to create with intention.</span>'],
+  ['.about-copy p', 0, 'Currently in the third year of the Computer Science and Networks program, Software Architecture track, at ESGIS Cotonou, I am gradually building a profile that connects software design, web development, networks and information security.'],
+  ['.about-copy p', 1, 'I like learning by building: experimenting on Linux, setting up virtualization environments, designing applications, understanding the mechanisms hidden behind systems, and turning an idea into a usable solution.'],
+  ['.about-copy p', 2, 'My interest goes beyond code. I am also interested in digital entrepreneurship, innovation, robotics, and how technology can respond to the realities of African businesses and communities.'],
+  ['.quote', 0, '« Calm in mind, powerful in action, and eternal in impact. »'],
+  ['.principle', 0, '<strong>Curiosity</strong><span>Questioning, exploring and learning continuously.</span>'],
+  ['.principle', 1, '<strong>Discipline</strong><span>Progressing with method, even on difficult topics.</span>'],
+  ['.principle', 2, '<strong>Impact</strong><span>Creating useful solutions, not just impressive ones.</span>'],
+
+  // Centres d'intérêt
+  ['.focus-card h3', 0, 'Software architecture'],
+  ['.focus-card p', 0, 'Designing structured applications, thinking about components, communication between services, maintainability and software quality.'],
+  ['.focus-card h3', 1, 'Cybersecurity'],
+  ['.focus-card p', 1, 'Networks, systems, application security, password hashing, best practices and gradual discovery of testing environments.'],
+  ['.focus-card h3', 2, 'Artificial intelligence'],
+  ['.focus-card p', 2, 'A growing interest in intelligent systems, data exploitation and the possibilities of AI in digital products.'],
+  ['.focus-card h3', 3, 'Web development'],
+  ['.focus-card p', 3, 'Building interfaces and applications with HTML, CSS, JavaScript, PHP, MySQL, Laravel and React depending on project needs.'],
+  ['.focus-card h3', 4, 'Networks & systems'],
+  ['.focus-card p', 4, 'Linux, administration, virtualization, network services, DNS, distributed databases and understanding infrastructure.'],
+  ['.focus-card h3', 5, 'Robotics & innovation'],
+  ['.focus-card p', 5, 'A curiosity for the interaction between software and hardware, embedded systems, Arduino and technologies that come to life.'],
+
+  // Parcours
+  ['.journey .eyebrow', 0, 'EDUCATION'],
+  ['.timeline-date', 0, '2025 — ONGOING'],
+  ['.timeline-item h3', 0, 'ESGIS Cotonou · Computer Science and Networks'],
+  ['.timeline-item p', 0, 'Third year, Software Architecture track. Deepening the fundamentals of programming, databases, networks, systems and application design.'],
+  ['.timeline-item h3', 1, 'Baccalaureate · CEG 1 de Kouandé'],
+  ['.timeline-item p', 1, 'Obtained the baccalaureate, series C.'],
+  ['.timeline-item h3', 2, 'BEPC · Collège Catholique Père Jean-Louis Bréhier'],
+  ['.timeline-item p', 2, 'Secondary education in Kouandé.'],
+  ['.journey .eyebrow', 1, 'SELF-DIRECTED LEARNING'],
+  ['.journey p.muted', 0, 'In-depth exploration of Linux (Ubuntu, Kali, CentOS), networks and security, programming, databases, Laravel, React, Python and development tools.'],
+  ['.skill-panel h3', 0, 'Technologies & environments explored'],
+  ['.skill-head span:last-child', 2, 'PROGRAMMING'],
+  ['.skill-head span:last-child', 3, 'SYSTEMS'],
+
+  // Projets
+  ['.project-status', 3, 'EVOLVING'],
+  ['.project h3', 1, 'Echo of the Ancestors'],
+  ['.project h3', 3, 'Portfolio & digital identity'],
+  ['.project p', 0, 'Concept for a futuristic strategy game built around networks, cybersecurity, digital influence and decision-making in a connected world.'],
+  ['.project p', 1, 'Narrative game project inspired by the history and heritage of Benin. The player follows a quest around memory fragments, historic places and ancestral stories.'],
+  ['.project p', 2, 'Idea for a web solution to enrich events and shared memories: public QR code, messages, multimedia content and a digital experience around an event.'],
+  ['.project p', 3, 'Building a professional online presence that showcases skills, experiments and a sober, assertive personal visual identity.'],
+  ['.tag', 3, 'Beninese culture'],
+  ['.tag', 4, 'Storytelling'],
+
+  // Vision
+  ['.vision .eyebrow', 0, '05 / THE ROAD AHEAD'],
+  ['.vision h3', 0, 'Think global. Learn without borders. <span class="gold">Create lasting impact.</span>'],
+  ['.vision p', 0, 'My ambition is to become a computer engineer able to design robust systems, understand cybersecurity challenges and explore applications of artificial intelligence and robotics. In the long run, I want to start my own ventures, contribute to the Beninese digital ecosystem and take part in projects that matter.'],
+  ['.vision p', 1, 'I am particularly interested in opportunities for specialization and further studies abroad, in environments of scientific and technological excellence.'],
+  ['.vision-pills span', 0, 'CYBERSECURITY'],
+  ['.vision-pills span', 1, 'AI & DATA'],
+  ['.vision-pills span', 2, 'ROBOTICS'],
+  ['.vision-pills span', 3, 'ENTREPRENEURSHIP'],
+  ['.vision-pills span', 4, 'INNOVATION IN BENIN'],
+  ['.vision-pills span', 5, 'RESEARCH & TRAINING'],
+
+  // Contact
+  ['.contact-title', 0, 'Got an idea?<br><em>Let’s build.</em>'],
+  ['.contact-grid p.muted', 0, 'Open to conversations about software development, technology, learning, student projects and collaboration opportunities.'],
+  ['.contact-grid .btn-primary', 0, 'Email me ↗'],
+  ['.contact-link small', 0, 'CODE · PROJECTS · EXPERIMENTS'],
+  ['.contact-link small', 1, 'CAREER · PROFESSIONAL NETWORK'],
+  ['.contact-link small', 2, "LET'S TALK ABOUT A PROJECT"],
+
+  // Footer
+  ['.footer-inner > span', 1, 'CALM IN MIND. POWERFUL IN ACTION.'],
+  ['.backtop', 0, 'BACK TO TOP ↑']
+].map(([sel, i, en]) => {
+  const el = document.querySelectorAll(sel)[i];
+  return el ? { el, fr: el.innerHTML, en } : null;
+}).filter(Boolean);
+
+const phrasesFR = [...phrases];
+const phrasesEN = [
+  'Software architecture',
+  'Cybersecurity & networks',
+  'Web development',
+  'Artificial intelligence',
+  'Innovation & robotics'
+];
+const metaDesc = document.querySelector('meta[name="description"]');
+const metaFR = metaDesc.content;
+const titleFR = document.title;
+const langBtn = document.getElementById('languageToggle');
+
+function setLanguage(lang) {
+  const en = lang === 'en';
+  translations.forEach(t => { t.el.innerHTML = en ? t.en : t.fr; });
+  phrases.splice(0, phrases.length, ...(en ? phrasesEN : phrasesFR));
+  phraseIndex = 0; charIndex = 0; deleting = false;
+  typingText.textContent = phrases[0];
+  document.documentElement.lang = lang;
+  document.title = en ? 'Vianney BANDA — Software Architecture · AI · Cybersecurity' : titleFR;
+  metaDesc.content = en
+    ? 'Portfolio of Vianney BANDA — Software Architecture student, passionate about development, cybersecurity, artificial intelligence and robotics.'
+    : metaFR;
+  langBtn.textContent = en ? 'FR' : 'EN';
+  langBtn.setAttribute('aria-label', en ? 'Passer le site en français' : 'Switch site to English');
+  try { localStorage.setItem('lang', lang); } catch (e) {}
+}
+
+langBtn.addEventListener('click', () => {
+  setLanguage(document.documentElement.lang === 'en' ? 'fr' : 'en');
+});
+
+try {
+  if (localStorage.getItem('lang') === 'en') setLanguage('en');
+} catch (e) {}
+    // Année automatique
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+
+</html>
