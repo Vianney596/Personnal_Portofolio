@@ -2,7 +2,6 @@
 
 Personal portfolio website presenting my projects, skills, and background as a software student based in Cotonou, Benin.
 
-🔗 **Live site:** [https://vianney596.github.io/](https://vianney596.github.io/)
 
 ## About
 
